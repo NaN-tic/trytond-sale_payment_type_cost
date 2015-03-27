@@ -1,0 +1,23 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:account.payment.type,cost_percent:"
+msgid "Cost (%)"
+msgstr "Coste (%)"
+
+msgctxt "field:account.payment.type,cost_product:"
+msgid "Cost product"
+msgstr "Coste del producto"
+
+msgctxt "field:account.payment.type,has_cost:"
+msgid "Has Costs?"
+msgstr "¿Tiene costes?"
+
+msgctxt "help:account.payment.type,has_cost:"
+msgid ""
+"Check it if it has to create a line with the operation cost in the customer "
+"sales."
+msgstr ""
+"Marque para crear una línea con el coste de la operación en las ventas del "
+"cliente. "
