@@ -10,9 +10,20 @@ msgctxt "field:account.payment.type,cost_product:"
 msgid "Cost product"
 msgstr "Coste del producto"
 
+msgctxt "field:account.payment.type,exclude_shipment_lines:"
+msgid "Exclude Shipment Lines"
+msgstr "Excluir líneas de envío"
+
 msgctxt "field:account.payment.type,has_cost:"
 msgid "Has Costs?"
 msgstr "¿Tiene costes?"
+
+msgctxt "help:account.payment.type,exclude_shipment_lines:"
+msgid ""
+"Excludes the shipment lines of computation of costs of this payment type."
+msgstr ""
+"Excluye líneas de gastos de envío del cálculo de costes de este tipo de "
+"pago."
 
 msgctxt "help:account.payment.type,has_cost:"
 msgid ""
