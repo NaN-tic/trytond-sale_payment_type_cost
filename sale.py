@@ -47,9 +47,13 @@ class Sale:
                 continue
             setattr(line, key, value)
         if self.payment_type.compute_over_total_amount:
-            line.unit_price = (self.total_amount *
-                self.payment_type.cost_percent)
+            amount = self.total_amount
+        elif self.payment_type.exclude_shipment_lines:
+            amount = sum([l.amount
+                    for l in self.lines
+                    if not getattr(l, 'shipment_cost', False)
+                    ])
         else:
-            line.unit_price = (self.untaxed_amount *
-                self.payment_type.cost_percent)
+            amount = self.untaxed_amount
+        line.unit_price = (amount * self.payment_type.cost_percent)
         return line
