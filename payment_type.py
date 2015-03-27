@@ -2,7 +2,7 @@
 # the full copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import PoolMeta
-from trytond.pyson import Bool, Eval
+from trytond.pyson import Bool, Eval, Not, Or
 
 
 __all__ = ['PaymentType']
@@ -13,7 +13,8 @@ class PaymentType:
     __name__ = 'account.payment.type'
     exclude_shipment_lines = fields.Boolean('Exclude Shipment Lines',
         states={
-            'invisible': Bool(Eval('compute_over_total_amount')),
+            'invisible': Or(Bool(Eval('compute_over_total_amount')),
+                Not(Bool(Eval('has_cost')))),
                 },
         help='Excludes the shipment lines of computation of costs of this '
             'payment type.')
