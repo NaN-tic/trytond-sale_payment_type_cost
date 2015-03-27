@@ -4,7 +4,7 @@
 from trytond.pool import Pool, PoolMeta
 
 
-__all__ = ['Sale', 'SaleLine']
+__all__ = ['Sale']
 __metaclass__ = PoolMeta
 
 
@@ -26,28 +26,26 @@ class Sale:
                         ])
                 if lines:
                     Line.delete(lines)
-                line = Line()
-                line.sale = sale
-                line.update_payment_type_cost_line()
+                line = sale._get_payment_type_cost_line()
                 line.save()
 
-
-class SaleLine:
-    __name__ = 'sale.line'
-
-    def update_payment_type_cost_line(self):
+    def _get_payment_type_cost_line(self):
+        " Returns sale line with the cost"
         pool = Pool()
         Line = pool.get('sale.line')
+
+        line = Line()
+        line.sale = self
         for key, value in Line.default_get(Line._fields.keys(),
                 with_rec_name=False).iteritems():
             if value is not None:
-                setattr(self, key, value)
-        self.quantity = 1
-        self.product = self.sale.payment_type.cost_product
-        for key, value in self.on_change_product().iteritems():
+                setattr(line, key, value)
+        line.quantity = 1
+        line.product = self.payment_type.cost_product
+        for key, value in line.on_change_product().iteritems():
             if 'rec_name' in key:
                 continue
-            setattr(self, key, value)
+            setattr(line, key, value)
         self.unit_price = (self.sale.total_amount *
             self.sale.payment_type.cost_percent)
-        return self
+        return line

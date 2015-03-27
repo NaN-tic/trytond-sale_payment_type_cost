@@ -8,5 +8,4 @@ from sale import *
 def register():
     Pool.register(
         Sale,
-        SaleLine,
         module='sale_payment_type_cost', type_='model')
