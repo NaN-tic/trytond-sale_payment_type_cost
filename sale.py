@@ -3,7 +3,6 @@
 # copyright notices and license terms.
 from trytond.pool import Pool, PoolMeta
 
-
 __all__ = ['Sale']
 __metaclass__ = PoolMeta
 
@@ -42,10 +41,7 @@ class Sale:
                 setattr(line, key, value)
         line.quantity = 1
         line.product = self.payment_type.cost_product
-        for key, value in line.on_change_product().iteritems():
-            if 'rec_name' in key:
-                continue
-            setattr(line, key, value)
+        line.on_change_product()
         if self.payment_type.compute_over_total_amount:
             amount = self.total_amount
         elif self.payment_type.exclude_shipment_lines:

@@ -4,7 +4,6 @@ from trytond.model import fields
 from trytond.pool import PoolMeta
 from trytond.pyson import Bool, Eval, Not, Or
 
-
 __all__ = ['PaymentType']
 __metaclass__ = PoolMeta
 
@@ -22,10 +21,8 @@ class PaymentType:
     @fields.depends('compute_over_total_amount')
     def on_change_compute_over_total_amount(self):
         try:
-            res = super(PaymentType,
-                self).on_change_compute_over_total_amount()
+            super(PaymentType, self).on_change_compute_over_total_amount()
         except AttributeError:
-            res = {}
+            pass
         if self.compute_over_total_amount:
-            res['exclude_shipment_lines'] = False
-        return res
+            self.exclude_shipment_lines = False
