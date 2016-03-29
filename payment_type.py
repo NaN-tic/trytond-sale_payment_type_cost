@@ -5,10 +5,10 @@ from trytond.pool import PoolMeta
 from trytond.pyson import Bool, Eval, Not, Or
 
 __all__ = ['PaymentType']
-__metaclass__ = PoolMeta
 
 
 class PaymentType:
+    __metaclass__ = PoolMeta
     __name__ = 'account.payment.type'
     exclude_shipment_lines = fields.Boolean('Exclude Shipment Lines',
         states={
