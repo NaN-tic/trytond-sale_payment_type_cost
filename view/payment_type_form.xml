@@ -2,10 +2,7 @@
 <!-- The COPYRIGHT file at the top level of this repository contains the full
 copyright notices and license terms. -->
 <data>
-    <xpath expr="/form/group[@id='costs']" position="replace_attributes">
-        <group id="costs" colspan="4" col="10"/>
-    </xpath>
-    <xpath expr="/form/group/field[@name='compute_over_total_amount']"
+    <xpath expr="/form/notebook/page[@id='costs']/field[@name='compute_over_total_amount']"
             position="after">
         <label name="exclude_shipment_lines"/>
         <field name="exclude_shipment_lines"/>
