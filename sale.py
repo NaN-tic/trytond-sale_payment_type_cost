@@ -6,8 +6,7 @@ from trytond.pool import Pool, PoolMeta
 __all__ = ['Sale']
 
 
-class Sale:
-    __metaclass__ = PoolMeta
+class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
 
     @classmethod
@@ -35,8 +34,8 @@ class Sale:
 
         line = Line()
         line.sale = self
-        for key, value in Line.default_get(Line._fields.keys(),
-                with_rec_name=False).iteritems():
+        for key, value in Line.default_get(list(Line._fields.keys()),
+                with_rec_name=False).items():
             if value is not None:
                 setattr(line, key, value)
         line.quantity = 1
