@@ -3,8 +3,6 @@
 # copyright notices and license terms.
 from trytond.pool import Pool, PoolMeta
 
-__all__ = ['Sale']
-
 
 class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
