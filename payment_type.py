@@ -15,6 +15,12 @@ class PaymentType(metaclass=PoolMeta):
         help='Excludes the shipment lines of computation of costs of this '
             'payment type.')
 
+    @classmethod
+    def __setup__(cls):
+        super().__setup__()
+        cls.cost_product.context = {'company': Eval('company')}
+        cls.cost_product.depends.add('company')
+
     @fields.depends('compute_over_total_amount')
     def on_change_compute_over_total_amount(self):
         try:
