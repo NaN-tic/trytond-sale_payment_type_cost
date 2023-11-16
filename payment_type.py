@@ -18,7 +18,7 @@ class PaymentType(metaclass=PoolMeta):
     @classmethod
     def __setup__(cls):
         super().__setup__()
-        cls.cost_product.context = {'company': Eval('company')}
+        cls.cost_product.context = {'company': Eval('company', -1)}
         cls.cost_product.depends.add('company')
 
     @fields.depends('compute_over_total_amount')
