@@ -50,8 +50,4 @@ class Sale(metaclass=PoolMeta):
             amount = self.untaxed_amount
         unit_price = (amount * self.payment_type.cost_percent)
         line.unit_price = unit_price
-        # compatibility with sale discount
-        if hasattr(line, 'gross_unit_price'):
-            line.gross_unit_price = unit_price
-            line.update_prices()
         return line
